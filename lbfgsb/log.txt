@@ -1,0 +1,187 @@
+This is a shared library test...
+
+i: 0 - f: 3460.000000 - task: START                                                       
+ 
+i: 1 - f: 3460.000000 - task: FG_START                                                    
+ 
+i: 2 - f: 4795540096.000000 - task: FG_LNSRCH                                                   
+ 
+i: 3 - f: 2479352.568838 - task: FG_LNSRCH                                                   
+ 
+i: 4 - f: 4595.958115 - task: FG_LNSRCH                                                   
+ 
+i: 5 - f: 2397.689625 - task: FG_LNSRCH                                                   
+ 
+i: 6 - f: 2397.689625 - task: NEW_X                                                       
+ 
+i: 7 - f: 143.805566 - task: FG_LNSRCH                                                   
+ 
+i: 8 - f: 143.805566 - task: NEW_X                                                       
+ 
+i: 9 - f: 72.816082 - task: FG_LNSRCH                                                   
+ 
+i: 10 - f: 72.816082 - task: NEW_X                                                       
+ 
+i: 11 - f: 16.030763 - task: FG_LNSRCH                                                   
+ 
+i: 12 - f: 16.030763 - task: NEW_X                                                       
+ 
+i: 13 - f: 5.187248 - task: FG_LNSRCH                                                   
+ 
+i: 14 - f: 5.187248 - task: NEW_X                                                       
+ 
+i: 15 - f: 2.127160 - task: FG_LNSRCH                                                   
+ 
+i: 16 - f: 2.127160 - task: NEW_X                                                       
+ 
+i: 17 - f: 0.207568 - task: FG_LNSRCH                                                   
+ 
+i: 18 - f: 0.207568 - task: NEW_X                                                       
+ 
+i: 19 - f: 0.053274 - task: FG_LNSRCH                                                   
+ 
+i: 20 - f: 0.053274 - task: NEW_X                                                       
+ 
+i: 21 - f: 0.013045 - task: FG_LNSRCH                                                   
+ 
+i: 22 - f: 0.013045 - task: NEW_X                                                       
+ 
+i: 23 - f: 0.003860 - task: FG_LNSRCH                                                   
+ 
+i: 24 - f: 0.003860 - task: NEW_X                                                       
+ 
+i: 25 - f: 0.000746 - task: FG_LNSRCH                                                   
+ 
+i: 26 - f: 0.000746 - task: NEW_X                                                       
+ 
+i: 27 - f: 0.000354 - task: FG_LNSRCH                                                   
+ 
+i: 28 - f: 0.000354 - task: NEW_X                                                       
+ 
+i: 29 - f: 0.000074 - task: FG_LNSRCH                                                   
+ 
+i: 30 - f: 0.000074 - task: NEW_X                                                       
+ 
+i: 31 - f: 0.000037 - task: FG_LNSRCH                                                   
+ 
+i: 32 - f: 0.000037 - task: NEW_X                                                       
+ 
+i: 33 - f: 0.000011 - task: FG_LNSRCH                                                   
+ 
+i: 34 - f: 0.000011 - task: NEW_X                                                       
+ 
+i: 35 - f: 0.000014 - task: FG_LNSRCH                                                   
+ 
+i: 36 - f: 0.000004 - task: FG_LNSRCH                                                   
+ 
+i: 37 - f: 0.000004 - task: NEW_X                                                       
+ 
+i: 38 - f: 0.000002 - task: FG_LNSRCH                                                   
+ 
+i: 39 - f: 0.000002 - task: NEW_X                                                       
+ 
+i: 40 - f: 0.000001 - task: FG_LNSRCH                                                   
+ 
+i: 41 - f: 0.000001 - task: NEW_X                                                       
+ 
+i: 42 - f: 0.000000 - task: FG_LNSRCH                                                   
+ 
+i: 43 - f: 0.000000 - task: NEW_X                                                       
+ 
+i: 44 - f: 0.000000 - task: FG_LNSRCH                                                   
+ 
+i: 45 - f: 0.000000 - task: NEW_X                                                       
+ 
+i: 46 - f: 0.000000 - task: FG_LNSRCH                                                   
+ 
+i: 47 - f: 0.000000 - task: NEW_X                                                       
+ 
+i: 48 - f: 0.000000 - task: FG_LNSRCH                                                   
+ 
+i: 49 - f: 0.000000 - task: NEW_X                                                       
+ 
+i: 50 - f: 0.000000 - task: FG_LNSRCH                                                   
+ 
+i: 51 - f: 0.000000 - task: NEW_X                                                       
+ RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =           25     M =            5
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  3.46000D+03    |proj g|=  1.03000D+02
+
+At iterate    1    f=  2.39769D+03    |proj g|=  6.50700D+01
+
+At iterate    2    f=  1.43806D+02    |proj g|=  3.64039D+01
+
+At iterate    3    f=  7.28161D+01    |proj g|=  2.29042D+01
+
+At iterate    4    f=  1.60308D+01    |proj g|=  6.95409D+00
+
+At iterate    5    f=  5.18725D+00    |proj g|=  9.05481D+00
+
+At iterate    6    f=  2.12716D+00    |proj g|=  1.96729D+01
+
+At iterate    7    f=  2.07568D-01    |proj g|=  2.12849D+00
+
+At iterate    8    f=  5.32739D-02    |proj g|=  8.32469D-01
+
+At iterate    9    f=  1.30450D-02    |proj g|=  4.27926D-01
+
+At iterate   10    f=  3.86031D-03    |proj g|=  2.00812D-01
+
+At iterate   11    f=  7.45653D-04    |proj g|=  1.37723D-01
+
+At iterate   12    f=  3.54016D-04    |proj g|=  1.21274D-01
+
+At iterate   13    f=  7.42511D-05    |proj g|=  2.97814D-02
+
+At iterate   14    f=  3.74062D-05    |proj g|=  1.72742D-02
+
+At iterate   15    f=  1.09832D-05    |proj g|=  2.86815D-02
+
+At iterate   16    f=  3.90757D-06    |proj g|=  8.08085D-03
+
+At iterate   17    f=  1.99502D-06    |proj g|=  3.47648D-03
+
+At iterate   18    f=  8.25796D-07    |proj g|=  2.25283D-03
+
+At iterate   19    f=  1.99224D-07    |proj g|=  1.45773D-03
+
+At iterate   20    f=  5.75772D-08    |proj g|=  1.48245D-03
+
+At iterate   21    f=  1.46326D-08    |proj g|=  5.44304D-04
+
+At iterate   22    f=  2.36329D-09    |proj g|=  2.25244D-04
+
+At iterate   23    f=  1.08349D-09    |proj g|=  1.72052D-04
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+   25     23     28     47     0     0   1.721D-04   1.083D-09
+  F =   1.0834900835175050E-009
+
+CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH             
+
+ Cauchy                time 5.470E-04 seconds.
+ Subspace minimization time 1.349E-03 seconds.
+ Line search           time 1.024E-03 seconds.
+
+ Total User time 1.551E-02 seconds.
+
+This is the end...
