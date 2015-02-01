@@ -2,7 +2,7 @@ local lbfgsb = {}
 ffi = require 'ffi'
 
 function lbfgsb.init(n_param, m_hist, bounds, lb, ub, print_level)
-	lbfgsb.lib = ffi.load("./liblbfgsb.so")
+	lbfgsb.lib = ffi.load("../lbfgsb/liblbfgsb.so")
 	ffi.cdef [[
 	  void setulb_(int *n, int *m,double *x,double *l,double *u,int *nbd, double *f,
 						double *g,double *factr,double *pgtol,double *wa,int *iwa,

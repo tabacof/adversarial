@@ -33,6 +33,15 @@ th adversarial.lua
 
 # Install GPU Torch libraries
 
+# Mount EBS volume
+# First time
+#sudo mkfs.ext4 /dev/xvdf
+sudo mkdir -m 000 /vol
+echo "/dev/xvdf /vol auto noatime 0 0" | sudo tee -a /etc/fstab
+sudo mount /vol
+# Unmount
+#sudo umount /vol
+
 # Install gfx.js
 sudo apt-get install node npm
 sudo apt-get install xdg-utils
