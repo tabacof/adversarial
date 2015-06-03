@@ -13,19 +13,22 @@ cmd:text()
 cmd:text('Options')
 cmd:option('-i', 'none', 'Input image file')
 cmd:option('-cuda', false,'CUDA support')
+cmd:option('-gpu', 1,'GPU device number')
 cmd:option('-ub', false,'Unbounded search')
 cmd:option('-mc', false,'Monte Carlo estimation of probability of finding adversarial images by chance')
 cmd:option('-numbermc', 100, 'Number of MC distortion samples')
 cmd:option('-hist', false, 'Histogram nonparametric noise (resampling with replacement)')
 cmd:option('-orig', false, 'MC analysis from original image (instead of adversarial)')
 cmd:option('-mnist', false, 'Use MNIST dataset (instead of ImageNet) - train classifier first and save as mnist.dat')
-
+cmd:option('-itorch', false, 'iTorch support for plotting')
 cmd:option('-seed', 123,'Random seed')
 
 cmd:text()
 params = cmd:parse(arg)
 
 cuda = params['cuda']
+deviceNum = params['gpu']
+itorch = params['itorch']
 unbounded = params['ub']
 monte_carlo = params['mc']
 hist = params['hist']
@@ -54,6 +57,12 @@ torch.setnumthreads(threads)
 require 'nn'
 require 'image'
 if gfx then require 'gfx.go' end
+
+if cuda then
+	require 'cutorch'
+	require 'cunn'
+	cutorch.setDevice(deviceNum)
+end
 
 -- The following required file must define the following global variables:
 -- net (sequential model)
@@ -323,9 +332,11 @@ disturbed:mul(std):add(mean)
 
 originalDisturbanceLayer:mul(std):add(mean)
 
-Plot = require 'itorch.Plot'
-plot = Plot():histogram(originalDisturbanceLayer):draw()
-plot:title('Disturbance histogram'):redraw()
+if itorch then
+	Plot = require 'itorch.Plot'
+	plot = Plot():histogram(originalDisturbanceLayer):draw()
+	plot:title('Disturbance histogram'):redraw()
+end
 
 function kurtosis(t)
 	local m = t:mean()
@@ -376,7 +387,9 @@ print('Time elapsed: ' .. timer:time().real - last_time  .. ' seconds')
 save_name = input_image:gsub(".jpg", "")
 save_name = save_name:gsub(".png", "")
 
-plot:save(save_name  .. '_distortion_hist_' .. label[adversarial_target] .. '.html')
+if itorch then
+	plot:save(save_name  .. '_distortion_hist_' .. label[adversarial_target] .. '.html')
+end
 
 image.save(save_name .. '_adversarial_'  .. label[adversarial_target] .. '.png', disturbed/255)
 image.save(save_name  .. '_distortion_'  .. label[adversarial_target] .. '.png', originalDisturbanceLayer/255)
