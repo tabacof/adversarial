@@ -1,3 +1,6 @@
+-- File reproduced from https://github.com/torch/tutorials/blob/master/A_datasets/mnist.lua
+-- by Soumith Chintala (https://github.com/soumith)
+
 ----------------------------------------------------------------------
 -- This script downloads and loads the MNIST dataset
 -- http://yann.lecun.com/exdb/mnist/
