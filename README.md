@@ -1,6 +1,7 @@
 # UNDER CONSTRUCTION
 
 Reproducing the results of "Intriguing Properties of Neural Networks" and beyond
+<!---
 
 ## Requirements
 
@@ -49,3 +50,5 @@ Options:
 ```
 
 The resulting images and the distortions will be created on the same folder of the image.
+
+-->
