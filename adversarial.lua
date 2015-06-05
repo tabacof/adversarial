@@ -399,7 +399,12 @@ while save_name:sub(#save_name, #save_name) ~= '/' do
 	save_name = save_name:sub(1, #save_name - 1)
 end
 
-file = io.open(save_name .. '/results.csv', 'a')
+if from_adversarial then
+	file = io.open(save_name .. '/results_from_adversarial.csv', 'a')
+else
+	file = io.open(save_name .. '/results_from_original.csv', 'a')
+end
+
 io.output(file)
 io.write('Original label; Adversarial label; Disturbance mean; Std; Kurtosis; Skewness;')
 if max_mc > 0 then
