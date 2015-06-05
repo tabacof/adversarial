@@ -181,20 +181,22 @@ local lbfgsb_w = disturb_x:float()
 
 print("Finding starting point")
 local C_init = 0.01
-local tol = C_init/10.0
 
 --The initial C must be high enough so that the adversarial search will fail
 repeat 
 	print("Trying C = ", C_init)
 	C = C_init
 	lb.eval(lbfgsb_function_gradient, lbfgsb_w, lbfgsb_max_iter)
-	prob, idx = predict()
+	local prob, idx = predict()
+	local pred_init = idx:squeeze()
+	print("Prediction: #" .. pred_init, label[pred_init])
 	C_init = C_init*10.0
-until idx:squeeze() ~= original_target
+until pred_init == original_target
 C_init = C_init/10.0
 
 local C_min, C_max = 0, C_init
 local reps = 0
+local tol = C_init/10.0
 
 while C_max - C_min > tol do
 	print("Reps: " .. reps .. " C min: " .. C_min .. " C max: " .. C_max)
@@ -207,7 +209,8 @@ while C_max - C_min > tol do
 	lb.eval(lbfgsb_function_gradient, lbfgsb_w, lbfgsb_max_iter)
 	local prob, idx = predict()
 	local pred_mid = idx:squeeze()
-
+	print("Prediction: #" .. pred_mid, label[pred_mid])
+	
 	if not warm_start then
 		lbfgsb_w:zero()
 	end
