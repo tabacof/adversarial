@@ -410,6 +410,9 @@ end
 
 io.output(file)
 io.write('Original label; Adversarial label; Disturbance mean; Std; Kurtosis; Skewness;')
+
+if hist then io.write('Expected MC noise std; Actual noise std; Original (%); Adversarial (%);') end
+
 if max_mc > 0 then
 	for i = -max_mc, max_mc do 
 		io.write('Expected MC noise std; Actual noise std; Original (%); Adversarial (%);')
