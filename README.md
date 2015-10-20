@@ -2,7 +2,8 @@
 
 ## Requirements
 
-Torch7 with NN and Image
+Torch7
+
 GFortran with BLAS
 
 ## L-BFGS-B
@@ -22,7 +23,7 @@ For MNIST you must train the classifier from scratch. A logistic regression shou
 
 ## ImageNet
 
-For ImageNet you can use the pre-trained OverFeat network, which is deep convolutional neural network that won the localization ILSVRC competition in 2013.
+For ImageNet you can use the pre-trained OverFeat network, which is a deep convolutional neural network that won the localization ILSVRC competition in 2013.
 
 First you must download the weights of the network (thanks to Jonghoon Jin):
 ```bash
