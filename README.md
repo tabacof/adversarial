@@ -1,7 +1,4 @@
-# UNDER CONSTRUCTION
-
-Reproducing the results of "Intriguing Properties of Neural Networks" and beyond
-<!---
+# Exploring the Space of Adversarial Images
 
 ## Requirements
 
@@ -17,38 +14,40 @@ For this we use the Fortran library L-BFGS-B written by Nocedal, the author of t
 cd lbfgsb
 make lib
 ```
-This library is as fast the Optim's LBFGS (wihout bound constraints).
+This library is as fast the Torch7 Optim's LBFGS (wihout bound constraints).
 
 ## MNIST
 
-For MNIST you must train the classifier from scratch.
-
-Under construction.
+For MNIST you must train the classifier from scratch. A logistic regression should achieve about 7.5% error, and a standard convolutional network 1%.
 
 ## ImageNet
 
-For ImageNet you can use the pre-trained OverFeat network, which is deep convolutional neural network that won the ILSVRC competition in 2013.
+For ImageNet you can use the pre-trained OverFeat network, which is deep convolutional neural network that won the localization ILSVRC competition in 2013.
 
-First you must download the weights of the network:
+First you must download the weights of the network (thanks to Jonghoon Jin):
 ```bash
-cd adversarial
-th X.lua
+cd overfeat
+sh install.sh
 ```
   
 Now you can create adversarial images using:
 ```bash
-th adversarial.lua image.png
+th adversarial.lua -i image.png
 ```
 
 Options:
 ```
--n: number of adversarial images you want to create (default is 1)
--f: fast mode, no optimization used (based on the idea REFNEEDED)
--mc: evaluate the space around the adversarial image using Monte Carlo sampling
--ub: unbounded optimization (allow the distortion to go outside the pixel space)
+-i: image file
 -cuda: use GPU support (must have CUDA installed on your computer - test this with require 'cutorch')
+-gpu: GPU device number
+-ub: unbounded optimization (allow the distortion to go outside the pixel space)
+-mc: probe the space around the adversarial image using white noise (default is Gaussian)
+-hist: use nonparametric noise instead of Gaussian ("histogram")
+-orig: probe the space around the original image instead
+-numbermc: number of probes
+-mnist: use MNIST instead of ImageNet dataset
+-itorch: iTorch plotting
+-seed: random seed
 ```
 
 The resulting images and the distortions will be created on the same folder of the image.
-
--->
