@@ -1,5 +1,9 @@
 # Exploring the Space of Adversarial Images
 
+```
+Tabacof, Pedro and Valle, Eduardo. Exploring the Space of Adversarial Images. arXiv prepring arXiv:1510.05328, 2015. Link: http://arxiv.org/abs/1510.05328
+```
+
 ## Requirements
 
 Torch7
@@ -30,7 +34,9 @@ First you must download the weights of the network (thanks to Jonghoon Jin):
 cd overfeat
 sh install.sh
 ```
-  
+
+## Adversarial images
+
 Now you can create adversarial images using:
 ```bash
 th adversarial.lua -i image.png
