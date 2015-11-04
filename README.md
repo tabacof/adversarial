@@ -1,6 +1,6 @@
 # Exploring the Space of Adversarial Images
 
-> Tabacof, Pedro and Valle, Eduardo. Exploring the Space of Adversarial Images. arXiv prepring arXiv:1510.05328, 2015. 
+> Tabacof, Pedro and Valle, Eduardo. Exploring the Space of Adversarial Images. arXiv preprint arXiv:1510.05328, 2015. 
 
 Please cite us if you use this code. [ArXiv link](http://arxiv.org/abs/1510.05328)
 ## Requirements
