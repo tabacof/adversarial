@@ -52,6 +52,7 @@ Options:
 -orig: probe the space around the original image instead
 -numbermc: number of probes
 -mnist: use MNIST instead of ImageNet dataset
+-conv: use convolutional network with MNIST (instead of logistic regression)
 -itorch: iTorch plotting
 -seed: random seed
 ```
