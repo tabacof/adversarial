@@ -20,6 +20,7 @@ cmd:option('-numbermc', 100, 'Number of MC distortion samples')
 cmd:option('-hist', false, 'Histogram nonparametric noise (resampling with replacement)')
 cmd:option('-orig', false, 'MC analysis from original image (instead of adversarial)')
 cmd:option('-mnist', false, 'Use MNIST dataset (instead of ImageNet) - train classifier first and save as mnist.dat')
+cmd:option('-conv', false, 'Use convolutional network (~1% errror) for MNIST')
 cmd:option('-itorch', false, 'iTorch support for plotting')
 cmd:option('-seed', 123,'Random seed')
 
@@ -33,6 +34,7 @@ unbounded = params['ub']
 monte_carlo = params['mc']
 hist = params['hist']
 mnist = params['mnist']
+conv = params['conv']
 from_adversarial = not params['orig']
 input_image = params['i']
 seed = params['seed']
@@ -42,7 +44,6 @@ totalMC = params['numbermc']
 
 cudnn = false
 threads = 4
-warm_start = true
 gfx = false
 network_size = 'small' or 'big'
 network_size = 'small'
@@ -140,7 +141,6 @@ local sign = function(x)
 	return x
 end
 
-
 local lbfgsb_function_gradient = function(x_new)
 	if disturb_x ~= x_new then
 	  disturb_x:copy(x_new)
@@ -187,6 +187,7 @@ repeat
 	print("Trying C = ", C_init)
 	C = C_init
 	lb.eval(lbfgsb_function_gradient, lbfgsb_w, lbfgsb_max_iter)
+	disturb_x:copy(lbfgsb_w)
 	local prob, idx = predict()
 	local pred_init = idx:squeeze()
 	print("Prediction: #" .. pred_init, label[pred_init])
@@ -198,22 +199,25 @@ local C_min, C_max = 0, C_init
 local reps = 0
 local tol = C_init/10.0
 
+print("Bisection search")
+lbfgsb_w:zero()
+
 while C_max - C_min > tol do
 	print("Reps: " .. reps .. " C min: " .. C_min .. " C max: " .. C_max)
 	reps = reps + 1
 	local C_mid = (C_max + C_min)/2
 	
-	print("Disturbance norm: " .. lbfgsb_w:norm())
 	--Midpoint evaluation
 	C = C_mid
 	lb.eval(lbfgsb_function_gradient, lbfgsb_w, lbfgsb_max_iter)
+	disturb_x:copy(lbfgsb_w)
 	local prob, idx = predict()
 	local pred_mid = idx:squeeze()
+	print("For C=", C)
+	print("Disturbance norm: " .. lbfgsb_w:norm())
 	print("Prediction: #" .. pred_mid, label[pred_mid])
-	
-	if not warm_start then
-		lbfgsb_w:zero()
-	end
+	lbfgsb_w:zero()
+	C_final = C_min
 	
 	if pred_mid == adversarial_target then
 		C_min = C
@@ -221,10 +225,13 @@ while C_max - C_min > tol do
 		C_max = C
 	end
 end
-C = C_min
-lb.eval(lbfgsb_function_gradient, lbfgsb_w, max_iter)
+C = C_final
+lb.eval(lbfgsb_function_gradient, lbfgsb_w, lbfgsb_max_iter)
+disturb_x:copy(lbfgsb_w)
+
 prob, idx = predict()
-print("Reps: " .. reps .. " C: " .. C)
+
+print("Final rep: ", reps, " with C: ", C)
 
 originalDisturbanceLayer = disturbanceLayer.bias:clone():float()
 
@@ -394,9 +401,9 @@ if itorch then
 	plot:save(save_name  .. '_distortion_hist_' .. label[adversarial_target] .. '.html')
 end
 
-image.save(save_name .. '_adversarial_'  .. label[adversarial_target] .. '.png', disturbed/255)
-image.save(save_name  .. '_distortion_'  .. label[adversarial_target] .. '.png', originalDisturbanceLayer/255)
-image.save(save_name  .. '_original'  .. label[adversarial_target] .. '.png', original/255)
+image.save(save_name .. '_adversarial_'  .. label[adversarial_target] .. '_' .. seed .. '.png', disturbed/255)
+image.save(save_name .. '_distortion_'   .. label[adversarial_target] .. '_' .. seed .. '.png', originalDisturbanceLayer/255)
+image.save(save_name .. '_original_'     .. label[adversarial_target] .. '_' .. seed .. '.png', original/255)
 
 while save_name:sub(#save_name, #save_name) ~= '/' do
 	save_name = save_name:sub(1, #save_name - 1)

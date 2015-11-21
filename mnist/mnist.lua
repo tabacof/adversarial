@@ -18,31 +18,45 @@ function file_exists(name)
    if f~=nil then io.close(f) return true else return false end
 end
 
-if not file_exists('./mnist/mnist model.dat') then
+if not conv and not file_exists('./mnist/mnist_linear.dat') then
 	require 'train'
 end
 
-local linLayer = nn.Linear(mnist.n,10)
-local softMaxLayer = nn.LogSoftMax()
+if conv and not file_exists('./mnist/mnist_conv.dat') then
+	require 'train'
+end
 
-local model = torch.load('./mnist/mnist model.dat'):float()
+local model
+net = nn.Sequential()
+disturbanceLayer = nn.Add(mnist.n)
+disturbanceLayer.bias:fill(0)
+net:add(disturbanceLayer)
 
-local w_train = model:parameters()
-local w = linLayer:parameters()
-w[1]:copy(w_train[1])
-w[2]:copy(w_train[2])
+if conv then
+	model = torch.load('./mnist/mnist_conv.dat'):float()
+	local w_train = model:parameters()
+	net = mnist.conv(net)
+	local w = net:parameters()
+	for i = 1, #w_train do
+		w[i+1]:copy(w_train[i])
+	end
+else
+	model = torch.load('./mnist/mnist_linear.dat'):float()
+	local linLayer = nn.Linear(mnist.n,10)
+	local softMaxLayer = nn.LogSoftMax()
+	local w_train = model:parameters()
+	local w = linLayer:parameters()
+	w[1]:copy(w_train[1])
+	w[2]:copy(w_train[2])
+	net:add(linLayer)
+	net:add(softMaxLayer)
+end
 
 local criterion = nn.ClassNLLCriterion()
 
-disturbanceLayer = nn.Add(mnist.n)
-disturbanceLayer.bias:fill(0)
-
-net = nn.Sequential()
-net:add(disturbanceLayer)
-net:add(linLayer)
-net:add(softMaxLayer)
-
 if cuda then net:cuda() end
+net:evaluate()
+--mnist.errorRate(net)
 
 predict = function()
 	if cuda then

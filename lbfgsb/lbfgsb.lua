@@ -1,5 +1,5 @@
 local lbfgsb = {}
-ffi = require 'ffi'
+local ffi = require 'ffi'
 
 function lbfgsb.init(n_param, m_hist, bounds, lb, ub, print_level)
 	lbfgsb.lib = ffi.load("./lbfgsb/liblbfgsb.so")
@@ -36,11 +36,11 @@ function lbfgsb.init(n_param, m_hist, bounds, lb, ub, print_level)
 end
 
 function lbfgsb.eval(feval, w, max_iter)
-	lua_task = "START                                                       "
+	local lua_task = "START                                                       "
 	ffi.C.strncpy(lbfgsb.task, lua_task, 61);
 	lbfgsb.len_task[0] = ffi.C.strlen(lbfgsb.task)
 
-	count = 0
+	local count = 0
 	for i = 0, lbfgsb.n[0] - 1 do
 		lbfgsb.x[i] = w[i + 1]
 	end
