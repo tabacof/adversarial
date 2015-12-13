@@ -5,7 +5,7 @@
 Please cite us if you use this code. [ArXiv link](http://arxiv.org/abs/1510.05328)
 ## Requirements
 
-Torch7
+[Torch7](https://github.com/torch/torch7)
 
 GFortran with BLAS
 
