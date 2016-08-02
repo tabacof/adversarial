@@ -82,7 +82,7 @@ timer = torch.Timer()
 
 if mnist then
 	if input_image == 'none' then input_image = 'images/mnist/last_mnist.jpg' end
-	require 'mnist'
+	require 'mnist_model'
 else
 	if input_image == 'none' then input_image = 'images/bee/bee.jpg' end
 	require 'overfeat'
