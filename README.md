@@ -22,7 +22,12 @@ This library is as fast the Torch7 Optim's LBFGS (wihout bound constraints).
 
 ## MNIST
 
-For MNIST you must train the classifier from scratch. A logistic regression should achieve about 7.5% error, and a standard convolutional network 1%.
+For MNIST, the code will train the classifier from scratch. A logistic regression should achieve about 7.5% error, and a standard convolutional network 1%. You need to download the dataset:
+
+```bash
+cd mnist
+th download.lua
+```
 
 ## ImageNet
 
